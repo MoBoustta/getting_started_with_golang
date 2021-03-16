@@ -2,13 +2,23 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func main() {
-	x := [...]int {4, 8, 5}
-	y := x[0:2]
-	z := x[1:3]
-	y[0] = 1
-	z[1] = 3
-	fmt.Print(x)
+	input := 0
+	slc := make([]int, 3)
+	count := 0
+	for true {
+		fmt.Println("Please enter a number of 'X' to quit")
+		_, _ = fmt.Scan(&input)
+		if input == 0 { break }
+
+		if count < 3 {
+			for i, v := range slc { if v == 0 { slc[i] = input; break } }
+		} else { slc = append(slc, input) }
+		sort.Ints(slc)
+		fmt.Println(slc)
+		count++
+	}
 }
